@@ -26,6 +26,17 @@ public class KibanaRPController {
             "</body>\n" +
             "</html>\n";
   }
+@RequestMapping("/kibana")
+  public String kibanaAsIframe(){
+    return "<html>\n" +
+            "<body>\n" +
+            "\n" +
+            "<iframe src=\"http://localhost:3333/kibanadashboard/app/kibana#/\" height=\"600\" width=\"800\"></iframe>\n" +
+            "\n" +
+            "\n" +
+            "</body>\n" +
+            "</html>\n";
+  }
 
 
 

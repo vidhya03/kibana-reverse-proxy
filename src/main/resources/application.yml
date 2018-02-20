@@ -7,7 +7,7 @@ proxy:
         # Enable only if basic auth protected for kibana
         is_auth_enabled: true
         #currently the kibana dashboard is configured as basic auth protected username / password is kibanaadmin/kibanaadmin
-        basic_auth: Basic a2liYW5hYWRtaW46a2liYW5hYWRtaW4=
+        basic_auth: Basic a2liYW5hYWRtaW46QUBsYW1AMTIz
 server:
     port: 3333
 
