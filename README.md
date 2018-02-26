@@ -1,4 +1,4 @@
-# Kibana reverse proxy 
+# Kibana reverse proxy       [![Build Status](https://travis-ci.org/vidhya03/kibana-reverse-proxy.svg?branch=master)]
 This is an Spring boot application for Kibana reverse proxy in the form of a Java servlet.  An HTTP proxy is useful for AJAX applications to communicate with web accessible services on hosts other than where the web application is hosted.
 # Kibana proxy configuration
 > configure the kibana.yml and set the server.basePath as below
