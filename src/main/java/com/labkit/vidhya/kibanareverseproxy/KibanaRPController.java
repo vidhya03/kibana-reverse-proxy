@@ -1,5 +1,6 @@
 package com.labkit.vidhya.kibanareverseproxy;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,6 +12,9 @@ import javax.servlet.http.HttpServletResponse;
 @RestController
 public class KibanaRPController {
 
+    @Autowired
+    KibanaProxyProperties prop ;
+
     @RequestMapping("/")
     public String index() {
         return "Greetings from Spring Boot Kibana proxy servlet";
@@ -18,22 +22,17 @@ public class KibanaRPController {
 
     @RequestMapping("/authenticate")
     public ResponseEntity<String> helloDashboard(HttpServletResponse response) {
-
-
         final Cookie cookie = new Cookie(KibanaProxyConstants.SESSION_COOKIE_NAME, "dummyjwt");
-        // cookie.setDomain("localhost:3333");//Optional
-//        cookie.setSecure(true);
         cookie.setHttpOnly(true);
         cookie.setPath("/");
         cookie.setMaxAge(45000);
-
         response.addCookie(cookie);
 
         String htmlLink = "<html>\n" +
                 "<body>\n" +
                 "\n" +
                 "<div>Authenticated access the dashboard here...</div>"+
-                "<a href=\"http://localhost:3333/portal/kibanadashboard.htm\">Dashboard</a>\n" +
+                "<a href=\"http://localhost:"+prop.getServerPort()+prop.getProxyKibanaServlet_url().replace("*","")+"\">Dashboard</a>\n" +
                 "\n" +
                 "\n" +
                 "</body>\n" +
@@ -43,6 +42,10 @@ public class KibanaRPController {
     }
 
 
+    /**
+     * ToDO how to add dashboard
+     * @return
+     */
     @RequestMapping("/mydashboard")
     public String iframe() {
         return "<html>\n" +
@@ -60,7 +63,9 @@ public class KibanaRPController {
         return "<html>\n" +
                 "<body>\n" +
                 "\n" +
-                "<iframe src=\"http://localhost:3333/kibanadashboard/app/kibana#/\" height=\"600\" width=\"800\"></iframe>\n" +
+
+                "<iframe src=\"" + "http://localhost:"+prop.getServerPort()+prop.getProxyKibanaServlet_url().replace("*","") +
+                "height=\"600\" width=\"800\"></iframe>\n" +
                 "\n" +
                 "\n" +
                 "</body>\n" +
