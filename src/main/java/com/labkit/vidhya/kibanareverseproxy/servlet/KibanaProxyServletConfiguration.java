@@ -1,8 +1,10 @@
 package com.labkit.vidhya.kibanareverseproxy.servlet;
 
+import com.labkit.vidhya.kibanareverseproxy.filter.KibanaAuthFilter;
 import org.apache.http.HttpRequest;
 import org.mitre.dsmiley.httpproxy.ProxyServlet;
 import org.springframework.boot.bind.RelaxedPropertyResolver;
+import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.EnvironmentAware;
 import org.springframework.context.annotation.Bean;
@@ -35,6 +37,17 @@ public class KibanaProxyServletConfiguration implements EnvironmentAware {
         servletRegistrationBean.addInitParameter("targetUri", propertyResolver.getProperty("target_url"));
         servletRegistrationBean.addInitParameter(ProxyServlet.P_LOG, propertyResolver.getProperty("logging_enabled", "false"));
         return servletRegistrationBean;
+    }
+
+    @Bean
+    public FilterRegistrationBean kibanaFilterRegistrationBean(){
+        FilterRegistrationBean filterRegistrationBean = new FilterRegistrationBean();
+
+        KibanaAuthFilter kibanaAuthFilter = new KibanaAuthFilter();
+        filterRegistrationBean.setFilter(kibanaAuthFilter);
+        filterRegistrationBean.addUrlPatterns(propertyResolver.getProperty("servlet_url"));
+
+        return filterRegistrationBean;
     }
 
     private RelaxedPropertyResolver propertyResolver;

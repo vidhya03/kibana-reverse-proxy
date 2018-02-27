@@ -12,6 +12,11 @@ public class KibanaRPController {
     return "Greetings from Spring Boot Kibana proxy servlet";
   }
 
+  @RequestMapping("/abs/dashboard/*")
+  public String helloDashboard() {
+    return "hellodashboard";
+  }
+
 
 
 
