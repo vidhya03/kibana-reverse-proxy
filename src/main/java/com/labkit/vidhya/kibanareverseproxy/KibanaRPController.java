@@ -32,7 +32,7 @@ public class KibanaRPController {
                 "<body>\n" +
                 "\n" +
                 "<div>Authenticated access the dashboard here...</div>"+
-                "<a href=\"http://localhost:"+prop.getServerPort()+prop.getProxyKibanaServlet_url().replace("*","")+"\">Dashboard</a>\n" +
+                "<a href=\""+prop.getProxyKibanaServlet_url().replace("*","")+"\">Dashboard</a>\n" +
                 "\n" +
                 "\n" +
                 "</body>\n" +

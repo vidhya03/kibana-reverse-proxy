@@ -1,7 +1,7 @@
 proxy:
     kibana:
-        #The base path is configured in kibana "kibanadashboard" hence we have added servlet as
-        servlet_url: /portal/kibanadashboard.htm/*
+        #The base path is configured in kibana <kibana.yml> server.basePath: "/kibanadashboard" </kibana.yml>  hence we have added servlet as
+        servlet_url: /kibanadashboard/*
         target_url: http://localhost:5601
         logging_enabled: true
         # Enable only if basic auth protected for kibana

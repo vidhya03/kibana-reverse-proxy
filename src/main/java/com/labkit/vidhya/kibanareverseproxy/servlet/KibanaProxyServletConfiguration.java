@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 public class KibanaProxyServletConfiguration implements EnvironmentAware {
 
 
-    private static final String ENV_PROXY_SOLR = "proxy.kibana.";
+    private static final String ENV_PROXY_KIBANA = "proxy.kibana.";
 
     @Bean
     public ServletRegistrationBean kibanaServletRegistrationBean(){
@@ -55,6 +55,6 @@ public class KibanaProxyServletConfiguration implements EnvironmentAware {
 
     @Override
     public void setEnvironment(Environment environment) {
-        this.propertyResolver = new RelaxedPropertyResolver(environment, ENV_PROXY_SOLR);
+        this.propertyResolver = new RelaxedPropertyResolver(environment, ENV_PROXY_KIBANA);
     }
 }
